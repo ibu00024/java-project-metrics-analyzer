@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    depends_on:
+      - java-analyzer
+    build: ./web
+    ports:
+      - "5001:5000"
+    volumes:
+      - shared_volume:/shared
+    environment:
+      JAVA_ANALYZER_URL: http://java-analyzer:8080/analyze
+
+  java-analyzer:
+    build: ./java
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - shared_volume:/shared
+
+volumes:
+  shared_volume:

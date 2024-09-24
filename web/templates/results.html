@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>解析結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>解析結果</h1>
+
+    <p>解析したリポジトリ: <a href="{{ repo_url }}" target="_blank">{{ repo_url }}</a></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Metrics</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in metrics.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td class="count-value">{{ value }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+    <div class="button-container">
+        <a href="{{ url_for('index') }}" class="btn">TOP</a>
+    </div>
+
+    <div class="usage-block">
+        <h2>使い方</h2>
+        <ul>
+            <li>このツールはJavaプロジェクトのメトリクスの解析ができます．</li>
+            <ol>
+                <li>解析したいGitHubリポジトリのURLを入力</li>
+                <li>解析ボタンを押す</li>
+            </ol>
+        </ul>
+        <ul>
+            <li>現在取得できるメトリクス一覧</li>
+        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>メトリクス名</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Files</td>
+                    <td>リポジトリ内のJavaファイル数</td>
+                </tr>
+                <tr>
+                    <td>Blank Lines</td>
+                    <td>ソースコード内の空白行数</td>
+                </tr>
+                <tr>
+                    <td>Comment Lines</td>
+                    <td>ソースコード内のコメント行数</td>
+                </tr>
+                <tr>
+                    <td>Code Lines</td>
+                    <td>ソースコード内のコード行数</td>
+                </tr>
+                <tr>
+                    <td>Classes</td>
+                    <td>クラスの定義数</td>
+                </tr>
+                <tr>
+                    <td>Method Declarations</td>
+                    <td>メソッドの宣言数</td>
+                </tr>
+                <tr>
+                    <td>Method Invocations</td>
+                    <td>メソッド呼び出し数</td>
+                </tr>
+                <tr>
+                    <td>Javadocs Of Method</td>
+                    <td>メソッドに関連付けられたJavadocの数</td>
+                </tr>
+                <tr>
+                    <td>All Javadocs</td>
+                    <td>リポジトリ内の全てのJavadocの数</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
