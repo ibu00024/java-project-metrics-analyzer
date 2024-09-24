@@ -1,1 +1,2 @@
-/target/
+/target/*
+!/target/api-1.0-SNAPSHOT.jar
