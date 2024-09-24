@@ -24,13 +24,13 @@ It uses a Java-based analyzer to retrieve key metrics such as the number of file
 1. **Clone the repository**:
     ```
     git clone https://github.com/ibu00024/java-project-metrics-analyzer.git
-    cd github-repo-metrics-analyzer
+    cd java-project-metrics-analyzer
     ```
 
 2. **Build and start the Docker containers**:<br>
     The application uses Docker Compose to set up two services:
-    - web: The Flask-based frontend that allows users to input GitHub repository URLs.
-    - java-analyzer: A Java service that performs the metrics analysis using [cmajava](https://github.com/ibu00024/cmajava).
+    - **web**: The Flask-based frontend that allows users to input GitHub repository URLs.
+    - **java-analyzer**: A Java service that performs the metrics analysis using [cmajava](https://github.com/ibu00024/cmajava).
     
     To build and run the containers:
     ```
