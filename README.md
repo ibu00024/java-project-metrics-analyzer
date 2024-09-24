@@ -21,13 +21,13 @@ It uses a Java-based analyzer to retrieve key metrics such as the number of file
 - **Python 3.x**: The Flask app runs on Python, and dependencies are managed using requirements.txt.
 
 ## Setup Instructions
-1. Clone the repository:
+1. **Clone the repository**:
     ```
     git clone https://github.com/ibu00024/java-project-metrics-analyzer.git
     cd github-repo-metrics-analyzer
     ```
 
-2. Build and start the Docker containers:<br>
+2. **Build and start the Docker containers**:<br>
     The application uses Docker Compose to set up two services:
     - web: The Flask-based frontend that allows users to input GitHub repository URLs.
     - java-analyzer: A Java service that performs the metrics analysis using [cmajava](https://github.com/ibu00024/cmajava).
@@ -39,21 +39,21 @@ It uses a Java-based analyzer to retrieve key metrics such as the number of file
     This command builds the images for both the web and java-analyzer services and starts the application. <br>
     The web interface will be available on http://localhost:5001.
 
-3. Access the Web Interface:<br>
+3. **Access the Web Interface**:<br>
     Once the containers are running, visit http://localhost:5001 in your browser. <br>
     Enter the GitHub repository URL of a Java project and click the "Analyze" button to retrieve metrics.
 
-Usage
-1. Enter GitHub repository URL:
+## Usage
+1. **Enter GitHub repository URL**:
    - Go to the web interface (http://localhost:5001).
    - Input the GitHub repository URL (Java-only).
    - Click the "Analyze" button.
-2. View the metrics:
+2. **View the metrics**:
    - The tool will display the various metrics for the analyzed repository.
 
 ## Dependencies
-- Flask: The web framework used for the frontend.
-- GitPython: Used for cloning GitHub repositories.
-- Java Runtime: Required for running the Java-based analyzer.
+- **Flask**: The web framework used for the frontend.
+- **GitPython**: Used for cloning GitHub repositories.
+- **Java Runtime**: Required for running the Java-based analyzer.
 
 All dependencies are managed via Docker, so no need to install them manually.
