@@ -5,16 +5,16 @@ services:
       - java-analyzer
     build: ./web
     ports:
-      - "5001:5000"
+      - "80:5000"
     volumes:
       - shared_volume:/shared
     environment:
       JAVA_ANALYZER_URL: http://java-analyzer:8080/analyze
+      AUTH_USERNAME: "admin"
+      AUTH_PASSWORD: "password"
 
   java-analyzer:
     build: ./java
-    # ports:
-    #   - "8080:8080"
     volumes:
       - shared_volume:/shared
 

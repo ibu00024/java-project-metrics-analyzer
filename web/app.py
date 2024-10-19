@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 import os
 import uuid
 import shutil
@@ -14,7 +14,27 @@ JAVA_ANALYZER_URL = os.getenv('JAVA_ANALYZER_URL')
 
 SHARED_VOLUME_PATH = "/shared"
 
-@app.route('/', methods=['GET', 'POST'])
+USERNAME = os.getenv('AUTH_USERNAME', 'admin') # default is admin
+PASSWORD = os.getenv('AUTH_PASSWORD', 'password') # default is password
+
+def check_auth(username, password):
+    return username == USERNAME and password == PASSWORD
+
+def authenticate():
+    return Response(
+        'Authentication is required', 401,
+        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
+
+@app.route('/', methods=['GET', 'POST'], endpoint='index')
+@requires_auth
 def index():
     if request.method == 'POST':
         repo_url = request.form.get('repo_url')
@@ -61,4 +81,4 @@ def parse_metrics(output):
     return metrics
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
